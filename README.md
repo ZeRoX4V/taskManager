@@ -1,4 +1,4 @@
-# Cache_lru
+# TaskManager
 ## Présentation : 
 Gestionnaire de tâche pour mobile et web développée en Ionic + Angular.
 
