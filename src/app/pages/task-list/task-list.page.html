@@ -16,7 +16,6 @@
       </ion-select>
     </ion-item>
 
-    <!-- Espace ajouté entre les filtres -->
     <div class="filter-space"></div>
 
     <ion-item>
@@ -30,16 +29,15 @@
     </ion-item>
   </div>
 
-  <!-- Séparation entre les filtres et les tâches -->
   <div class="separator"></div>
 
   <ion-list>
     <ion-item *ngFor="let task of filteredTasks" class="task-item" (click)="viewTaskDetails(task.id)">
       <ion-label class="task-details">
-        <strong>{{ task.titre }}</strong>
-        <span class="task-info" [ngStyle]="{'color': getPriotiteCouleur(task.priorite)}">Priorité: {{ task.priorite
-          }}</span>
+        <strong class="titre">{{ task.titre }}</strong>
         <span class="task-info">Date Limite: {{ task.dateLimite | date:'dd/MM/yyyy' }}</span>
+        <span class="task-info" [ngStyle]="{'color': getPriotiteCouleur(task.priorite)}">Priorité: {{
+          task.priorite}}</span>
         <span class="task-info" [ngStyle]="{'color': getStatutCouleur(task.statut)}">Statut: {{ task.statut }}</span>
       </ion-label>
       <ion-buttons slot="end">
@@ -56,7 +54,6 @@
         </ion-button>
       </ion-buttons>
     </ion-item>
-    <!-- Séparation entre les différentes tâches -->
     <div class="task-separator"></div>
   </ion-list>
 

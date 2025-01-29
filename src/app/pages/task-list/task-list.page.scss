@@ -1,65 +1,61 @@
 ion-content {
-    --background: #222; // Couleur de fond sombre
-    color: #fff; // Couleur du texte
+    color: #222;
 }
 
 .filter-container {
     display: flex;
-    flex-direction: column; // Disposer les filtres les uns au-dessus des autres
-    padding: 10px;
-    background-color: #333; // Fond sombre pour les filtres
-    border-radius: 8px; // Coins arrondis
-    margin: 10px; // Marge autour des filtres
-
-    ion-item {
-        margin: 5px 0; // Espacement vertical entre les filtres
-    }
+    flex-direction: column;
+    padding: 4px;
+    background-color: #dddbdb;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .filter-space {
-    height: 20px; // Hauteur de l'espace entre les filtres
+    height: 5px;
 }
 
 .task-item {
-    display: flex; // Utiliser flex pour la disposition
-    justify-content: space-between; // Espacement entre les éléments
-    align-items: center; // Centrer verticalement
-    padding: 15px; // Espacement interne
-    margin-bottom: 15px; // Ajouter un espacement en bas pour séparer les tâches
-    border-bottom: 1px solid #ccc; // Ligne de séparation entre les tâches
-    background-color: #444; // Fond sombre pour chaque tâche
-    border-radius: 8px; // Coins arrondis
-    transition: background-color 0.3s; // Transition douce pour le survol
-    width: 100%; // Prendre toute la largeur disponible
-
-    &:hover {
-        background-color: #555; // Changement de couleur au survol
-    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px;
+    margin-bottom: 8px;
+    background-color: #dddbdb;
+    border-radius: 8px;
+    width: 100%;
+    box-shadow: 3px 3px 3px rgb(208, 208, 208);
 }
 
-// Styles pour les informations de la tâche
+
 .task-details {
-    display: flex; // Utiliser flex pour la disposition
-    flex-direction: row; // Disposer les éléments sur une ligne
-    flex-wrap: wrap; // Permettre le retour à la ligne si nécessaire
-    width: 100%; // Prendre toute la largeur disponible
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .task-info {
-    margin-left: 15px; // Espacement entre les informations
-    font-size: 0.9em; // Taille de police pour les détails
-    margin-bottom: 5px; // Ajouter un espacement en bas pour une meilleure lisibilité
+    margin-left: 15px;
+    font-size: 1em;
 }
 
-// Media query pour les appareils mobiles
+ion-list {
+    margin: 5px;
+}
+
+
+
 @media (max-width: 768px) {
     .task-details {
-        flex-direction: column; // Disposer les éléments en colonne sur mobile
-        align-items: flex-start; // Aligner à gauche
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .task-info {
-        margin-left: 0; // Supprimer l'espacement à gauche
-        margin-bottom: 5px; // Ajouter un espacement en bas
+        margin-left: 0;
+        margin-bottom: 5px;
     }
 }

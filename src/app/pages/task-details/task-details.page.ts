@@ -11,16 +11,17 @@ import { Task } from '../../models/task.model';
   standalone: false,
 })
 export class TaskDetailsPage implements OnInit {
-  taskForm: FormGroup;
-  task: Task | undefined;
-  isEditing: boolean = false;
+  taskForm: FormGroup; // Formulaire pour modifier les détails de la tâche
+  task: Task | undefined; // Tâche à afficher/modifier
+  isEditing: boolean = false; // Indicateur pour savoir si nous sommes en mode édition
 
   constructor(
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
+    private formBuilder: FormBuilder, // Service pour construire le form
+    private route: ActivatedRoute, // Service pour accéder aux paramètres de la route pour récupérer l'id
     private taskService: TaskService,
-    private router: Router
+    private router: Router,
   ) {
+    // Initialisation du formulaire avec des contrôles sur la dateLimite et le titre
     this.taskForm = this.formBuilder.group({
       titre: ['', Validators.required],
       description: [''],
@@ -29,77 +30,84 @@ export class TaskDetailsPage implements OnInit {
     });
   }
 
+  // Méthode appelée lors de l'initialisation du composant
   async ngOnInit() {
-    const taskId = Number(this.route.snapshot.paramMap.get('id'));
-    this.task = await this.taskService.getTaskById(taskId);
+    const taskId = Number(this.route.snapshot.paramMap.get('id')); // Récupére l'ID de la tâche depuis les paramètres de l'URL
+    this.task = await this.taskService.getTaskById(taskId); // Charger la tâche en fonction de l'id
+
     if (this.task) {
+      // Si la tâche existe, rempli le formulaire avec les détails de la tâche
       this.taskForm.patchValue({
         titre: this.task.titre,
         description: this.task.description,
-        dateLimite: this.task.dateLimite ? new Date(this.task.dateLimite).toISOString() : '',
+        dateLimite: this.task.dateLimite ? new Date(this.task.dateLimite).toISOString() : '', // Convertir en format ISO
         priorite: this.task.priorite
       });
     }
   }
 
+  // Méthode pour basculer entre le mode édition et le mode affichage
   toggleEdit() {
     if (this.isEditing && this.taskForm.valid) {
-      const updatedTask = { ...this.task, ...this.taskForm.value };
+      const updatedTask = { ...this.task, ...this.taskForm.value }; // Créer un nouvel objet tâche avec les valeurs du formulaire
 
-      const dateLimite = new Date(updatedTask.dateLimite); // Convertir JJ/MM/AAAA en YYYY-MM-DD
-      const dateCreation = new Date(this.task?.dateCreation ?? '');
+      const dateLimite = new Date(updatedTask.dateLimite); // Convertir la date limite en objet Date
+      const dateCreation = new Date(this.task?.dateCreation ?? ''); // Récupérer la date de création
 
-      // Permettre la même date
+      // Vérifier si la date limite est valide
       if (this.compareDates(dateLimite, dateCreation) || dateLimite > dateCreation) {
-        updatedTask.dateLimite = dateLimite;
+        updatedTask.dateLimite = dateLimite; // Met à jour la date limite
 
-        this.taskService.updateTask(updatedTask);
-        this.task = updatedTask; // Mettre à jour la tâche locale
+        this.taskService.updateTask(updatedTask); // Appele le service pour mettre à jour la tâche
+        this.task = updatedTask; // Met à jour la tâche affichée
       } else {
-        alert('La date limite ne peut pas être antérieure à la date de création.');
+        alert('La date limite ne peut pas être antérieure à la date de création.'); // Alerte si la date limite est invalide
         return;
       }
     } else if (!this.taskForm.valid) {
-      alert('Veuillez remplir tous les champs obligatoires.');
+      alert('Veuillez remplir tous les champs obligatoires.'); // Alerte si le formulaire n'est pas valide
       return;
     }
-    this.isEditing = !this.isEditing;
+    this.isEditing = !this.isEditing; // Basculer l'état d'édition
   }
 
+  // Méthode pour comparer deux dates
   compareDates(date1: Date, date2: Date): boolean {
     return date1.getFullYear() === date2.getFullYear() &&
       date1.getMonth() === date2.getMonth() &&
       date1.getDate() === date2.getDate();
   }
 
+  // Méthode pour naviguer vers la liste des tâches
   goBack() {
     this.router.navigate(['/task-list']);
   }
 
+  // Méthode pour déterminer la couleur du texte en fonction du statut
   getStatutCouleur(statut: string): string {
     switch (statut) {
       case 'A Faire':
-        return 'red'; // Rouge
+        return 'red';
       case 'En Cour':
-        return 'orange'; // Jaune
+        return 'orange';
       case 'Terminé':
-        return 'green'; // Vert
+        return 'green';
       default:
-        return 'white'; // Couleur par défaut
+        return 'black';
     }
   }
 
-  getPriotiteCouleur(statut: string): string {
-    switch (statut) {
+  // Méthode pour déterminer la couleur du texte en fonction de la priorité
+  getPriotiteCouleur(priorite: string): string {
+    switch (priorite) {
       case 'Basse':
-        return 'green'; // Rouge
+        return 'green';
       case 'Moyenne':
-        return 'orange'; // Jaune
+        return 'orange';
       case 'Haute':
-        return 'red'; // Vert
+        return 'red';
       default:
-        return 'whie'; // Couleur par défaut
+        return 'black';
     }
   }
-
 }

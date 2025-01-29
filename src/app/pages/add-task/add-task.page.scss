@@ -1,47 +1,41 @@
 ion-content {
-    --background: #222; // Couleur de fond sombre
-    color: #fff; // Couleur du texte
+    color: #000000;
 }
 
 .task-form {
-    padding: 20px; // Espacement autour du formulaire
+    padding: 20px;
 }
 
 ion-item {
-    margin-bottom: 15px; // Espacement entre les éléments du formulaire
-}
-
-ion-item:last-child {
-    margin-bottom: 0; // Pas d'espacement en bas du dernier élément
-}
-
-.date-picker {
-    margin-top: 10px; // Espacement entre le titre et le sélecteur de date
-    max-width: 90%; // Réduire la largeur du sélecteur de date
-}
-
-.submit-button {
-    margin-top: 20px; // Espacement au-dessus du bouton
-    background-color: #007bff; // Couleur du bouton
-    color: #fff; // Couleur du texte du bouton
-    border-radius: 8px; // Coins arrondis pour le bouton
-    font-weight: bold; // Mettre le texte en gras
+    margin-bottom: 5px;
+    background-color: #dddbdb;
+    padding: 2px;
+    border-radius: 10px;
 }
 
 ion-label {
-    color: #fff; // Couleur des étiquettes
+    margin: 0;
+    padding: 0;
 }
 
-ion-input,
-ion-textarea,
-ion-datetime,
-ion-select {
-    color: #fff; // Couleur du texte des champs
-    border-radius: 8px; // Coins arrondis pour les champs
-    --background: transparent; // Enlever le fond des champs
+ion-input {
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
-ion-input::placeholder,
-ion-textarea::placeholder {
-    color: #bbb; // Couleur des placeholders
+ion-item:last-child {
+    margin-bottom: 0;
+}
+
+.date-picker {
+    margin-top: 10px;
+    max-width: 90%;
+}
+
+.submit-button {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 8px;
+    font-weight: bold;
 }

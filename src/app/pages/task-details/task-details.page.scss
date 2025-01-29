@@ -1,73 +1,91 @@
 ion-content {
-    --background: #222; // Couleur de fond sombre
-    color: #fff; // Couleur du texte
-    padding: 20px; // Ajout de padding pour éviter que le contenu ne soit collé aux bords
-    height: 100vh; // S'assurer que le contenu prend toute la hauteur de la fenêtre
-    box-sizing: border-box; // Inclure le padding dans la hauteur totale
+    color: #000000;
+    padding: 20px;
+    height: 100vh;
+    box-sizing: border-box;
 }
 
 .content-wrapper {
-    display: flex; // Utiliser flex pour centrer le contenu
-    justify-content: center; // Centrer horizontalement
-    align-items: center; // Centrer verticalement
-    flex-direction: column; // Disposer les éléments en colonne
-    width: 100%; // Prendre toute la largeur disponible
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
 }
 
 .task-card {
-    margin: 20px; // Marge autour de la carte pour éviter qu'elle ne soit collée aux bords
-    padding: 20px; // Padding interne pour la carte
-    max-width: 600px; // Largeur maximale de la carte
-    width: 100%; // Prendre toute la largeur disponible jusqu'à la largeur maximale
-    background-color: #333; // Fond sombre pour la carte
-    border-radius: 8px; // Coins arrondis
+    margin: 20px;
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 5px 5px 5px #dddbdb;
 }
 
 ion-card-header {
-    background-color: #444; // Fond légèrement plus clair pour l'en-tête
-    border-top-left-radius: 8px; // Coins arrondis
-    border-top-right-radius: 8px; // Coins arrondis
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background-color: #dddbdb;
 }
 
 .card-title {
-    text-align: center; // Centrer le titre de la carte
+    text-align: center;
 }
 
 .card-content {
-    display: flex; // Utiliser flex pour centrer le contenu
-    flex-direction: column; // Disposer les éléments en colonne
-    align-items: center; // Centrer horizontalement
-    text-align: center; // Centrer le texte
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .edit-button {
-    margin: 15px auto; // Espacement au-dessus et centrage
-    color: #fff; // Couleur du texte du bouton
-    border-radius: 8px; // Coins arrondis pour le bouton
-    padding: 10px 20px; // Espacement interne pour le bouton
-    width: auto; // Largeur automatique pour le bouton
-    display: block; // Afficher le bouton comme un bloc pour le centrer
+    margin: 15px auto;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px 20px;
+    width: auto;
+    display: block;
 }
 
 h2 {
-    font-size: 1.2em; // Taille de police pour le titre
-    margin: 0; // Pas de marge
+    color: #000000;
+    font-size: 1.2em;
+    margin: 0;
 }
 
 p {
-    margin: 5px 0; // Espacement vertical entre les paragraphes
-    font-size: 0.9em; // Taille de police pour les détails
+    color: #000000;
+    margin: 5px 0;
+    font-size: 0.9em;
 }
 
 .date-picker {
-    margin-top: 10px; // Espacement entre le titre et le sélecteur de date
-    max-width: 90%; // Réduire la largeur du sélecteur de date
+    margin-top: 10px;
+    max-width: 90%;
 }
 
-// Media query pour les appareils mobiles
+ion-item {
+    margin-bottom: 5px;
+    background-color: #dddbdb;
+    padding: 2px;
+    border-radius: 10px;
+}
+
+ion-label {
+    margin: 0;
+    padding: 0;
+}
+
+.task-form {
+    padding-bottom: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 @media (max-width: 768px) {
     .task-card {
-        margin: 20px; // Marge pour les appareils mobiles
-        padding: 15px; // Réduire le padding interne pour s'assurer que tout est visible
+        margin: 20px;
+        padding: 15px;
     }
 }

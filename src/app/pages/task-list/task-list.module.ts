@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms'; // Importer FormsModule
+import { FormsModule } from '@angular/forms';
 import { TaskListPage } from './task-list.page';
 
 const routes: Routes = [
@@ -16,7 +16,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     IonicModule,
-    FormsModule, // Ajouter FormsModule ici
+    FormsModule,
     RouterModule.forChild(routes)
   ],
   declarations: [TaskListPage]
