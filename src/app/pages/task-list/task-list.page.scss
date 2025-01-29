@@ -1,0 +1,65 @@
+ion-content {
+    --background: #222; // Couleur de fond sombre
+    color: #fff; // Couleur du texte
+}
+
+.filter-container {
+    display: flex;
+    flex-direction: column; // Disposer les filtres les uns au-dessus des autres
+    padding: 10px;
+    background-color: #333; // Fond sombre pour les filtres
+    border-radius: 8px; // Coins arrondis
+    margin: 10px; // Marge autour des filtres
+
+    ion-item {
+        margin: 5px 0; // Espacement vertical entre les filtres
+    }
+}
+
+.filter-space {
+    height: 20px; // Hauteur de l'espace entre les filtres
+}
+
+.task-item {
+    display: flex; // Utiliser flex pour la disposition
+    justify-content: space-between; // Espacement entre les éléments
+    align-items: center; // Centrer verticalement
+    padding: 15px; // Espacement interne
+    margin-bottom: 15px; // Ajouter un espacement en bas pour séparer les tâches
+    border-bottom: 1px solid #ccc; // Ligne de séparation entre les tâches
+    background-color: #444; // Fond sombre pour chaque tâche
+    border-radius: 8px; // Coins arrondis
+    transition: background-color 0.3s; // Transition douce pour le survol
+    width: 100%; // Prendre toute la largeur disponible
+
+    &:hover {
+        background-color: #555; // Changement de couleur au survol
+    }
+}
+
+// Styles pour les informations de la tâche
+.task-details {
+    display: flex; // Utiliser flex pour la disposition
+    flex-direction: row; // Disposer les éléments sur une ligne
+    flex-wrap: wrap; // Permettre le retour à la ligne si nécessaire
+    width: 100%; // Prendre toute la largeur disponible
+}
+
+.task-info {
+    margin-left: 15px; // Espacement entre les informations
+    font-size: 0.9em; // Taille de police pour les détails
+    margin-bottom: 5px; // Ajouter un espacement en bas pour une meilleure lisibilité
+}
+
+// Media query pour les appareils mobiles
+@media (max-width: 768px) {
+    .task-details {
+        flex-direction: column; // Disposer les éléments en colonne sur mobile
+        align-items: flex-start; // Aligner à gauche
+    }
+
+    .task-info {
+        margin-left: 0; // Supprimer l'espacement à gauche
+        margin-bottom: 5px; // Ajouter un espacement en bas
+    }
+}

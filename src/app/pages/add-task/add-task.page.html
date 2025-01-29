@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ajouter une Tâche</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="taskForm" (ngSubmit)="addTask()" class="task-form">
+    <ion-item>
+      <ion-label position="floating">Titre*</ion-label>
+      <ion-input formControlName="titre" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-textarea formControlName="description"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Date Limite*</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" formControlName="dateLimite" required class="date-picker"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Priorité</ion-label>
+      <ion-select formControlName="priorite">
+        <ion-select-option value="Basse">Basse</ion-select-option>
+        <ion-select-option value="Moyenne">Moyenne</ion-select-option>
+        <ion-select-option value="Haute">Haute</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="full" type="submit" class="submit-button">Ajouter</ion-button>
+  </form>
+</ion-content>

@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back"></ion-icon> <!-- Icône de flèche pour le retour -->
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Détails de la Tâche</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="task">
+  <div class="content-wrapper">
+    <ion-card class="task-card">
+      <ion-card-header>
+        <ion-card-title class="card-title">{{ task.titre }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="card-content">
+        <p>Description: {{ task.description }}</p>
+        <p [ngStyle]="{'color': getPriotiteCouleur(task.priorite)}">Priorité: {{ task.priorite }}</p>
+        <p>Date de Création: {{ task.dateCreation | date:'dd/MM/yyyy' }}</p>
+        <p>Date Limite: {{ task.dateLimite | date:'dd/MM/yyyy' }}</p>
+        <p [ngStyle]="{'color': getStatutCouleur(task.statut)}">Statut: {{ task.statut }}</p>
+      </ion-card-content>
+
+      <ion-button (click)="toggleEdit()" class="edit-button">
+        {{ isEditing ? 'Enregistrer' : 'Modifier' }}
+      </ion-button>
+    </ion-card>
+
+    <form *ngIf="isEditing" [formGroup]="taskForm">
+      <ion-item>
+        <ion-label position="floating">Titre</ion-label>
+        <ion-input formControlName="titre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Description</ion-label>
+        <ion-textarea formControlName="description"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label>Date Limite </ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" formControlName="dateLimite" required
+          class="date-picker"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Priorité</ion-label>
+        <ion-select formControlName="priorite">
+          <ion-select-option value="Basse">Basse</ion-select-option>
+          <ion-select-option value="Moyenne">Moyenne</ion-select-option>
+          <ion-select-option value="Haute">Haute</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </form>
+  </div>
+</ion-content>

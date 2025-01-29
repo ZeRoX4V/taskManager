@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Gestionnaire de Tâche</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="filter-container">
+    <ion-item>
+      <ion-label>Filtrer par Statut</ion-label>
+      <ion-select [(ngModel)]="selectStatut" (ionChange)="filterTasks()">
+        <ion-select-option value="">Tous</ion-select-option>
+        <ion-select-option value="A Faire">À faire</ion-select-option>
+        <ion-select-option value="En Cour">En cours</ion-select-option>
+        <ion-select-option value="Terminé">Terminé</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Espace ajouté entre les filtres -->
+    <div class="filter-space"></div>
+
+    <ion-item>
+      <ion-label>Filtrer par Priorité</ion-label>
+      <ion-select [(ngModel)]="selectPriorite" (ionChange)="filterTasks()">
+        <ion-select-option value="">Tous</ion-select-option>
+        <ion-select-option value="Basse">Basse</ion-select-option>
+        <ion-select-option value="Moyenne">Moyenne</ion-select-option>
+        <ion-select-option value="Haute">Haute</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+
+  <!-- Séparation entre les filtres et les tâches -->
+  <div class="separator"></div>
+
+  <ion-list>
+    <ion-item *ngFor="let task of filteredTasks" class="task-item" (click)="viewTaskDetails(task.id)">
+      <ion-label class="task-details">
+        <strong>{{ task.titre }}</strong>
+        <span class="task-info" [ngStyle]="{'color': getPriotiteCouleur(task.priorite)}">Priorité: {{ task.priorite
+          }}</span>
+        <span class="task-info">Date Limite: {{ task.dateLimite | date:'dd/MM/yyyy' }}</span>
+        <span class="task-info" [ngStyle]="{'color': getStatutCouleur(task.statut)}">Statut: {{ task.statut }}</span>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button color="primary" *ngIf="task.statut === 'A Faire'"
+          (click)="changeTaskStatut(task.id); $event.stopPropagation()">
+          Commencer
+        </ion-button>
+        <ion-button color="success" *ngIf="task.statut === 'En Cour'"
+          (click)="changeTaskStatut(task.id); $event.stopPropagation()">
+          Terminer
+        </ion-button>
+        <ion-button color="danger" (click)="deleteTask(task.id); $event.stopPropagation()">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+    <!-- Séparation entre les différentes tâches -->
+    <div class="task-separator"></div>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="goToAddTask()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
